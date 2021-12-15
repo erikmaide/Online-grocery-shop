@@ -12,12 +12,20 @@ export const Wrapper = styled.div`
   h3 {
     text-align: center;
   }
+  .popup{
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+  border-style: none;
+  }
 
-  button {
+  .button {
     border-radius: 0 0 10px 10px;
     background-color: #1aff1a;
   }
-
+  .buttonDetailed {
+    border-radius: 10px;
+    background-color: #1aff1a;
+  }
   img {
     max-height: 250px;
     object-fit: cover;

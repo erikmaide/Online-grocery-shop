@@ -1,8 +1,8 @@
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button'
-import Toolbar from '@material-ui/core/Toolbar';
 import { CartItemType } from '../App';
+import { ShoppingCart } from '@material-ui/icons';
 
 type Props = {
   cartItems: CartItemType[];
@@ -14,12 +14,11 @@ const MyAppBar: React.FC<Props> = ({ cartItems, setCartOpen }) => {
       items.reduce((ack: number, item) => ack + item.quantity * item.price, 0);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ textAlign: 'center' }}>
       <AppBar position="fixed">
-        <Toolbar>
-      <Button onClick={() => setCartOpen(true)}>Enter shopping cart</Button>
-      <h3>Total: {calculateTotal(cartItems).toFixed(2)}€</h3>
-        </Toolbar>
+      <Button onClick={() => setCartOpen(true)} color="inherit"  variant="outlined" endIcon={<ShoppingCart/>}>
+        Shopping Cart Total: {calculateTotal(cartItems).toFixed(2)}€
+      </Button>
       </AppBar>
     </Box>
   );

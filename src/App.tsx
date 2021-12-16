@@ -28,7 +28,7 @@ fetch('https://raw.githubusercontent.com/erikmaide/sampledata/main/products.json
     ...item,
     id,
    };
-}))
+}));
 
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);

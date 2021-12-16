@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Item from './Item/Item';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import uniqid from 'uniqid';
-import { Wrapper, ShoppingCartButton } from './App.styles';
+import { Wrapper } from './App.styles';
 
 export type CartItemType = {
   id: number;
@@ -37,8 +37,6 @@ const App = () => {
     'products',
     getProducts
   );
-  const calculateTotal = (items: CartItemType[]) =>
-  items.reduce((ack: number, item) => ack + item.quantity * item.price, 0).toFixed(2);
 
   const handleAddToCart = (clickedItem: CartItemType) => {
     setCartItems(prev => {

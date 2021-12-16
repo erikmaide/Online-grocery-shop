@@ -9,6 +9,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
 
+
 export type CartItemType = {
   id: number;
   name: string;

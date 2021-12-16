@@ -23,13 +23,13 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
       <h3>Ingredients: {item.description || "-"}</h3>
       {item.price > 0 &&
         <Button onClick={() => handleAddToCart(item)} className="buttonDetailed">
-          Add to cart
+          Add to Cart
     </Button>
       }
     </Popup>
     {item.price > 0 &&
       <Button onClick={() => handleAddToCart(item)} className="button">
-        Add to cart
+        Add to Cart
     </Button>
     }
   </Wrapper>

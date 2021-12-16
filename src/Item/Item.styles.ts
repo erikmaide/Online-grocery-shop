@@ -14,14 +14,16 @@ export const Wrapper = styled.div`
   }
   .popupButton{
   background-color: #fff;
-  border-radius: 10px 10px 0 0;
+  border-radius: 0 0 10px 10px;
   border-style: none;
+  cursor: pointer;
   }
   
 
   .button {
     border-radius: 0 0 10px 10px;
-    background-color: #1aff1a;
+    background: linear-gradient(to bottom,#f7dfa5,#f0c14b);
+    text-transform: none;
   }
   .buttonDetailed {
     border-radius: 10px;

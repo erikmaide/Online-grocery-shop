@@ -12,10 +12,14 @@ export const Wrapper = styled.div`
   h3 {
     text-align: center;
   }
-  .popup{
+  .popupButton{
   background-color: #fff;
   border-radius: 10px 10px 0 0;
   border-style: none;
+  }
+  
+  Popup{
+    border-radius: 10px;
   }
 
   .button {

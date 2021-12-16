@@ -5,6 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid'
 import Item from './Item/Item';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import uniqid from 'uniqid';
 import { Wrapper, ShoppingCartButton } from './App.styles';
 
 export type CartItemType = {
@@ -22,7 +23,7 @@ const getProducts = (): Promise<CartItemType[]> =>
 fetch('https://raw.githubusercontent.com/erikmaide/sampledata/main/products.json')
 .then(r => r.json())
 .then(json => json.map((item: { name: string; }) => {
-   const id = item.name.match(regex);
+   const id = uniqid();
    return {
     ...item,
     id,

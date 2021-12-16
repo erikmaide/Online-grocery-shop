@@ -17,6 +17,8 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
       <h3>{item.price || "-"}{item.price > 0 && "€"} </h3>
     </div>
     <Popup trigger={<button className="popupButton">More info</button>} modal nested >
+      <h2>{item.name}</h2>
+      <h2>Price: {item.price || "-"}</h2>
       <h3>Rating: {item.rating || "-"}</h3>
       <h3>Ingredients: {item.description || "-"}</h3>
       {item.price > 0 &&

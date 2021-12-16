@@ -18,7 +18,6 @@ export type CartItemType = {
   quantity: number;
 };
 
-const regex = /(?<=[#])[0-9]+/;
 const getProducts = (): Promise<CartItemType[]> => 
 fetch('https://raw.githubusercontent.com/erikmaide/sampledata/main/products.json')
 .then(r => r.json())

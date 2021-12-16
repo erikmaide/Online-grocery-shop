@@ -18,9 +18,6 @@ export const Wrapper = styled.div`
   border-style: none;
   }
   
-  Popup{
-    border-radius: 10px;
-  }
 
   .button {
     border-radius: 0 0 10px 10px;

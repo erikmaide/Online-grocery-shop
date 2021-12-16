@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+import MyAppBar from './MyAppBar/MyAppBar'
 import Cart from './Cart/Cart';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid'
@@ -55,7 +56,7 @@ const App = () => {
       return [...prev, { ...clickedItem, quantity: 1 }];
     });
   };
-
+ 
   const handleRemoveFromCart = (id: number) => {
     setCartItems(prev =>
       prev.reduce((ack, item) => {
@@ -74,6 +75,10 @@ const App = () => {
 
   return (
     <Wrapper>
+      <MyAppBar
+      cartItems={cartItems}
+      setCartOpen={setCartOpen} 
+      />
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
         <Cart
           cartItems={cartItems}
@@ -81,10 +86,6 @@ const App = () => {
           removeFromCart={handleRemoveFromCart}
         />
       </Drawer>
-      <ShoppingCartButton onClick={() => setCartOpen(true)}>
-      <h3>Enter shopping cart</h3>
-      <h3>Total cost: {[calculateTotal(cartItems),"€"]}</h3>
-      </ShoppingCartButton>
       <Grid container spacing={5}>
         {data?.map(item => (
           <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>

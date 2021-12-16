@@ -20,4 +20,5 @@ export const ShoppingCartButton = styled.button`
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 10px;
   background-color: #1aff1a;
+  opacity: 80%;
 `;

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import MyAppBar from './MyAppBar/MyAppBar'
 import Cart from './Cart/Cart';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid'
@@ -8,7 +7,7 @@ import Item from './Item/Item';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
-
+import SearchAppBar from './SearchAppBar/SearchAppBar';
 
 export type CartItemType = {
   id: number;
@@ -75,7 +74,7 @@ const App = () => {
 
   return (
     <Wrapper>
-      <MyAppBar
+      <SearchAppBar
         cartItems={cartItems}
         setCartOpen={setCartOpen}
         setSearchTerm={setSearchTerm}

@@ -20,18 +20,19 @@ export type CartItemType = {
   quantity: number;
 };
 
-const getProducts = (): Promise<CartItemType[]> => 
-fetch('https://raw.githubusercontent.com/erikmaide/sampledata/main/products.json')
-.then(r => r.json())
-.then(json => json.map((item: { name: string; }) => {
-   const id = uniqid();
-   return {
-    ...item,
-    id,
-   };
-}));
+const getProducts = (): Promise<CartItemType[]> =>
+  fetch('https://raw.githubusercontent.com/erikmaide/sampledata/main/products.json')
+    .then(r => r.json())
+    .then(json => json.map((item: { name: string; }) => {
+      const id = uniqid();
+      return {
+        ...item,
+        id,
+      };
+    }));
 
 const App = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
@@ -55,7 +56,7 @@ const App = () => {
       return [...prev, { ...clickedItem, quantity: 1 }];
     });
   };
- 
+
   const handleRemoveFromCart = (id: number) => {
     setCartItems(prev =>
       prev.reduce((ack, item) => {
@@ -75,8 +76,9 @@ const App = () => {
   return (
     <Wrapper>
       <MyAppBar
-      cartItems={cartItems}
-      setCartOpen={setCartOpen} 
+        cartItems={cartItems}
+        setCartOpen={setCartOpen}
+        setSearchTerm={setSearchTerm}
       />
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
         <Cart
@@ -86,7 +88,13 @@ const App = () => {
         />
       </Drawer>
       <Grid container spacing={5}>
-        {data?.map(item => (
+        {data?.filter((item) => {
+          if (searchTerm === "") {
+            return item
+          } else if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return item
+          }
+        }).map(item => (
           <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
             <Item item={item} handleAddToCart={handleAddToCart} />
           </Grid>

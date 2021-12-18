@@ -8,6 +8,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
 import SearchAppBar from './SearchAppBar/SearchAppBar';
+// import * as _ from "lodash";
 
 export type CartItemType = {
   id: number;
@@ -69,6 +70,14 @@ const App = () => {
     );
   };
 
+  //functions for sorting data
+  /*
+  const sortedPriceAsc= _.orderBy(data, 'price' , 'asc');
+  const sortedPriceDesc = _.orderBy(data, 'price' , 'desc');
+  const sortedNameAsc = _.orderBy(data, 'name', 'asc');
+  const sortedNameDesc = _.orderBy(data, 'name', 'desc');
+  */
+
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something is broken...</div>;
 
@@ -90,9 +99,7 @@ const App = () => {
         {data?.filter((item) => {
           if (searchTerm === "") {
             return item
-          } else if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return item
-          }
+          } return item.name.toLowerCase().includes(searchTerm.toLowerCase());
         }).map(item => (
           <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
             <Item item={item} handleAddToCart={handleAddToCart} />

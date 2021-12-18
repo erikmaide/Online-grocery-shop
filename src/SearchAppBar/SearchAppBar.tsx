@@ -7,7 +7,6 @@ import { CartItemType } from '../App';
 import Button from '@material-ui/core/Button'
 import { ShoppingCart } from '@material-ui/icons';
 
-
 type Props = {
   cartItems: CartItemType[];
   setCartOpen: any;

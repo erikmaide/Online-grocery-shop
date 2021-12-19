@@ -9,6 +9,7 @@ import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
 import SearchAppBar from './SearchAppBar/SearchAppBar';
 import * as _ from "lodash";
+import { useLocalStorage } from 'usehooks-ts';
 
 export type CartItemType = {
   id: number;
@@ -35,7 +36,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortingSet, setSorting] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as CartItemType[]);
+  const [cartItems, setCartItems] = useLocalStorage("jsonData", [] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'products',
     getProducts
@@ -85,9 +86,6 @@ const App = () => {
         return data;
     }
   }
-
-
-
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something is broken...</div>;

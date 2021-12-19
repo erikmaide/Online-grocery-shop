@@ -8,7 +8,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
 import SearchAppBar from './SearchAppBar/SearchAppBar';
-// import * as _ from "lodash";
+import * as _ from "lodash";
 
 export type CartItemType = {
   id: number;
@@ -33,6 +33,7 @@ const getProducts = (): Promise<CartItemType[]> =>
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortingSet, setSorting] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
@@ -70,13 +71,23 @@ const App = () => {
     );
   };
 
-  //functions for sorting data
-  /*
-  const sortedPriceAsc= _.orderBy(data, 'price' , 'asc');
-  const sortedPriceDesc = _.orderBy(data, 'price' , 'desc');
-  const sortedNameAsc = _.orderBy(data, 'name', 'asc');
-  const sortedNameDesc = _.orderBy(data, 'name', 'desc');
-  */
+  const setDataSorting = (selectedSorter?: string) => {
+    switch(selectedSorter) {
+      case "PriceAsc":
+        return _.orderBy(data, 'price', 'asc');
+      case "PriceDesc":
+        return _.orderBy(data, 'price', 'desc');
+      case "NameAsc":
+          return _.orderBy(data, 'name', 'asc');
+      case "NameDesc":
+          return _.orderBy(data, 'name', 'desc');
+      default:
+        return data;
+    }
+  }
+
+
+
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something is broken...</div>;
@@ -87,6 +98,7 @@ const App = () => {
         cartItems={cartItems}
         setCartOpen={setCartOpen}
         setSearchTerm={setSearchTerm}
+        setSorting={setSorting}
       />
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
         <Cart
@@ -96,7 +108,7 @@ const App = () => {
         />
       </Drawer>
       <Grid container spacing={5}>
-        {data?.filter((item) => {
+        {setDataSorting(sortingSet)?.filter((item) => {
           if (searchTerm === "") {
             return item
           } return item.name.toLowerCase().includes(searchTerm.toLowerCase());

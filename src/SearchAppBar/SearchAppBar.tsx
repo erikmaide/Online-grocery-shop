@@ -35,10 +35,9 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
             <Button onClick={() => setCartOpen(true)} variant="outlined" endIcon={<ShoppingCart />}>
               Total: {calculateTotal(cartItems).toFixed(2)}€
          </Button>}
+         <Box sx={{ pl: 1 }}>
           <div>
             <Button
-              id="demo-customized-button"
-              aria-controls="demo-customized-menu"
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
               variant="contained"
@@ -48,7 +47,6 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
               Sort products
       </Button>
             <StyledMenu
-              id="demo-customized-menu"
               MenuListProps={{
                 'aria-labelledby': 'demo-customized-button',
               }}
@@ -76,6 +74,7 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
         </MenuItem>
             </StyledMenu>
           </div>
+          </Box>
           <Search>
             <StyledInputBase
               placeholder="Search items"

@@ -54,23 +54,20 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={() => setSorting("PriceDesc")} disableRipple>
+              <MenuItem onClick={() =>{ setSorting("PriceDesc"); handleClose();}} disableRipple>
                 Price from high to low
         </MenuItem>
-              <MenuItem onClick={() => setSorting("PriceAsc")} disableRipple>
+              <MenuItem onClick={() =>{ setSorting("PriceAsc"); handleClose();}} disableRipple>
                 Price from low to high
         </MenuItem>
-              <MenuItem onClick={() => setSorting("NameAsc")} disableRipple>
+              <MenuItem onClick={() =>{ setSorting("NameAsc"); handleClose();}} disableRipple>
                 Products from A-Z
         </MenuItem>
-              <MenuItem onClick={() => setSorting("NameDesc")} disableRipple>
+              <MenuItem onClick={() =>{ setSorting("NameDesc"); handleClose();}} disableRipple>
                 Products from Z-A
         </MenuItem>
-              <MenuItem onClick={() => setSorting("")} disableRipple>
+              <MenuItem onClick={() =>{ setSorting(""); handleClose();}} disableRipple>
                 Disable sorting
-        </MenuItem>
-              <MenuItem onClick={handleClose} disableRipple>
-                Close menu
         </MenuItem>
             </StyledMenu>
           </div>

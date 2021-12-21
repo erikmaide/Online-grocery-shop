@@ -32,9 +32,10 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          {cartItems.length === 0 ? <Button onClick={() => setCartOpen(true)} variant="outlined" endIcon={<ShoppingCart />}>Cart is empty.</Button> :
-            <Button onClick={() => setCartOpen(true)} variant="outlined" endIcon={<ShoppingCart />}>
-              Total: {calculateTotal(cartItems).toFixed(2)}€
+          {cartItems.length === 0 ? 
+          <Button onClick={() => setCartOpen(true)} variant="contained" endIcon={<ShoppingCart /> }>Cart is empty.</Button> :
+         <Button onClick={() => setCartOpen(true)} variant="contained" endIcon={<ShoppingCart />}>
+          Total: {calculateTotal(cartItems).toFixed(2)}€
          </Button>}
           <Box sx={{ pl: 1 }}>
             <div>
@@ -44,10 +45,9 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
                   aria-expanded={open ? 'true' : undefined}
                   variant="contained"
                   disableElevation
-                  onClick={handleClick}
-                >
+                  onClick={handleClick}>
                   Sort products
-      </Button>
+                </Button>
               </ThemeProvider>
               <StyledMenu
                 MenuListProps={{

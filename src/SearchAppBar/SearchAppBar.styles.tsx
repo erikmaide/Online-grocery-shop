@@ -1,8 +1,6 @@
 import Menu from '@material-ui/core/Menu';
-import { styled, alpha } from '@material-ui/core/styles';
+import {  alpha, createTheme, styled } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-
-
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -23,7 +21,6 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -76,3 +73,11 @@ export const StyledMenu = styled((props) => (
     },
   },
 }));
+
+export const sortButtonTheme = createTheme({
+  typography: {
+    button: {
+      textTransform: "none"
+    }
+  }
+});

@@ -1,7 +1,7 @@
 import Button from '@material-ui/core/Button';
-import { CartItemType } from '../App';
-import { Wrapper } from './Item.styles';
+import { CartItemType } from '../types';
 import Popup from 'reactjs-popup';
+import { Wrapper } from './Item.styles';
 import 'reactjs-popup/dist/index.css';
 
 type Props = {

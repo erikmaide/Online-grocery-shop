@@ -1,12 +1,13 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Toolbar from '@material-ui/core/Toolbar';
-import { CartItemType } from '../App';
 import Button from '@material-ui/core/Button'
-import { ShoppingCart } from '@material-ui/icons';
+import Box from '@material-ui/core/Box';
+import { CartItemType } from '../types';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Search, StyledInputBase, StyledMenu } from './SearchAppBar.styles'
+import { ShoppingCart } from '@material-ui/icons';
+import { sortButtonTheme, Search, StyledInputBase, StyledMenu } from './SearchAppBar.styles'
+import { ThemeProvider } from "@material-ui/core/styles";
+import Toolbar from '@material-ui/core/Toolbar';
 
 type Props = {
   cartItems: CartItemType[];
@@ -35,46 +36,48 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
             <Button onClick={() => setCartOpen(true)} variant="outlined" endIcon={<ShoppingCart />}>
               Total: {calculateTotal(cartItems).toFixed(2)}€
          </Button>}
-         <Box sx={{ pl: 1 }}>
-          <div>
-            <Button
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              variant="contained"
-              disableElevation
-              onClick={handleClick}
-            >
-              Sort products
+          <Box sx={{ pl: 1 }}>
+            <div>
+              <ThemeProvider theme={sortButtonTheme}>
+                <Button
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  variant="contained"
+                  disableElevation
+                  onClick={handleClick}
+                >
+                  Sort products
       </Button>
-            <StyledMenu
-              MenuListProps={{
-                'aria-labelledby': 'demo-customized-button',
-              }}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={() =>{ setSorting("PriceDesc"); handleClose();}} disableRipple>
-                Price from high to low
+              </ThemeProvider>
+              <StyledMenu
+                MenuListProps={{
+                  'aria-labelledby': 'demo-customized-button',
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={() => { setSorting("PriceDesc"); handleClose(); }} disableRipple>
+                  Price from high to low
         </MenuItem>
-              <MenuItem onClick={() =>{ setSorting("PriceAsc"); handleClose();}} disableRipple>
-                Price from low to high
+                <MenuItem onClick={() => { setSorting("PriceAsc"); handleClose(); }} disableRipple>
+                  Price from low to high
         </MenuItem>
-              <MenuItem onClick={() =>{ setSorting("NameAsc"); handleClose();}} disableRipple>
-                Products from A-Z
+                <MenuItem onClick={() => { setSorting("NameAsc"); handleClose(); }} disableRipple>
+                  Products from A-Z
         </MenuItem>
-              <MenuItem onClick={() =>{ setSorting("NameDesc"); handleClose();}} disableRipple>
-                Products from Z-A
+                <MenuItem onClick={() => { setSorting("NameDesc"); handleClose(); }} disableRipple>
+                  Products from Z-A
         </MenuItem>
-              <MenuItem onClick={() =>{ setSorting(""); handleClose();}} disableRipple>
-                Disable sorting
+                <MenuItem onClick={() => { setSorting(""); handleClose(); }} disableRipple>
+                  Disable sorting
         </MenuItem>
-            </StyledMenu>
-          </div>
+              </StyledMenu>
+            </div>
           </Box>
           <Search>
             <StyledInputBase
-              placeholder="Search items"
+              placeholder="Search..."
               onChange={(event) => {
                 setSearchTerm(event.target.value);
               }}

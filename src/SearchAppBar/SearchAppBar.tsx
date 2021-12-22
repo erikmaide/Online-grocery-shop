@@ -33,9 +33,9 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
       <AppBar position="fixed">
         <Toolbar>
           {cartItems.length === 0 ? 
-          <Button onClick={() => setCartOpen(true)} variant="contained" endIcon={<ShoppingCart /> }>Cart is empty.</Button> :
+          <Button onClick={() => setCartOpen(true)} variant="contained" endIcon={<ShoppingCart /> }></Button> :
          <Button onClick={() => setCartOpen(true)} variant="contained" endIcon={<ShoppingCart />}>
-          Total: {calculateTotal(cartItems).toFixed(2)}€
+          {calculateTotal(cartItems).toFixed(2)}€
          </Button>}
           <Box sx={{ pl: 1 }}>
             <div>
@@ -46,7 +46,7 @@ const SearchAppBar: React.FC<Props> = ({ cartItems, setCartOpen, setSearchTerm, 
                   variant="contained"
                   disableElevation
                   onClick={handleClick}>
-                  Sort products
+                  Sort
                 </Button>
               </ThemeProvider>
               <StyledMenu

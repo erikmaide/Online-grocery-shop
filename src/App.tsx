@@ -11,6 +11,8 @@ import SearchAppBar from './SearchAppBar/SearchAppBar';
 import { orderBy } from "lodash";
 import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import  ItemPage from './ItemPage/ItemPage';
 
 const getProducts = (): Promise<CartItemType[]> =>
   fetch('https://raw.githubusercontent.com/erikmaide/sampledata/main/products.json')
@@ -47,7 +49,7 @@ const App = () => {
     });
   };
 
-  const handleRemoveFromCart = (id: number) => {
+  const handleRemoveFromCart = (id: string) => {
     setCartItems(prev =>
       prev.reduce((ack, item) => {
         if (item.id === id) {
@@ -74,7 +76,7 @@ const App = () => {
          return data;
     };
   };
-
+  
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something is broken...</div>;
 
@@ -93,18 +95,24 @@ const App = () => {
           removeFromCart={handleRemoveFromCart}
         />
       </Drawer>
-      <Grid container spacing={5}>
-        {setDataSorting(sortingSet)?.filter((item) => {
-          if (searchTerm === "") {
-             return item
-          }; return item.name.toLowerCase().includes(searchTerm.toLowerCase());
-        }).map(item => (
-          <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
-          </Grid>
-        ))}
-      </Grid>
-    </Wrapper>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          <Grid container spacing={5}>
+            {setDataSorting(sortingSet)?.filter((item) => {
+              if (searchTerm === ""){
+                return item}
+              return item.name.toLowerCase().includes(searchTerm.toLowerCase())})
+              .map(item => (
+              <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+                <Item item={item} handleAddToCart={handleAddToCart} />
+              </Grid>))}
+            </Grid>
+          }/>
+          <Route path={`itempage/:itemId`} element ={<ItemPage data={data} addToCart={handleAddToCart}/>} />
+        </Routes>
+      </BrowserRouter>
+    </Wrapper> 
   );
 };
 

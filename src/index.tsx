@@ -6,7 +6,7 @@ const client = new QueryClient();
 
 ReactDOM.render( 
       <QueryClientProvider client={client}>
-    <App />
-    </QueryClientProvider>,
+        <App />
+      </QueryClientProvider>,
   document.getElementById('root')
 );

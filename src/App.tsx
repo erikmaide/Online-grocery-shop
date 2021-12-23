@@ -9,9 +9,8 @@ import Item from './Item/Item';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import SearchAppBar from './SearchAppBar/SearchAppBar';
 import { orderBy } from "lodash";
-import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import  ItemPage from './ItemPage/ItemPage';
 
 let countString = 0;

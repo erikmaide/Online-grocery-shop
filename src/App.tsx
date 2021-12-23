@@ -11,14 +11,17 @@ import SearchAppBar from './SearchAppBar/SearchAppBar';
 import { orderBy } from "lodash";
 import uniqid from 'uniqid';
 import { Wrapper } from './App.styles';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import  ItemPage from './ItemPage/ItemPage';
 
+let countString = 0;
+const regex = /(?<=[#])[0-9]+/;
 const getProducts = (): Promise<CartItemType[]> =>
   fetch('https://raw.githubusercontent.com/erikmaide/sampledata/main/products.json')
     .then(r => r.json())
     .then(json => json.map((item: { name: string; }) => {
-      const id = uniqid();
+      countString = countString + 1;
+      const id = item.name.match(regex) + countString.toString();
       return {
         ...item,
         id,

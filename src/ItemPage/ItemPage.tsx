@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import { CartItemType } from '../types';
 import { Wrapper } from './ItemPage.styles';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 type Props = {
   addToCart: (clickedItem: CartItemType) => void;

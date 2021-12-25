@@ -34,7 +34,10 @@ const App = () => {
   const [cartItems, setCartItems] = useLocalStorage("jsonData", [] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'products',
-    getProducts
+    getProducts,
+    {
+      refetchOnWindowFocus: false
+    }
   );
 
   const handleAddToCart = (clickedItem: CartItemType) => {

@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import { CartItemType } from '../types';
 import { Wrapper } from './ItemPage.styles';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 type Props = {
   addToCart: (clickedItem: CartItemType) => void;
@@ -10,8 +11,9 @@ type Props = {
 };
 
 const ItemPage: React.FC<Props> = ({ data, addToCart }) => {
+  
   const { itemId } = useParams();
-  const item: CartItemType = data ?.find((item: { id: string | undefined; }) => (item.id === itemId));
+  const item: CartItemType = data ?.find((item: { id: string; }) => (item.id === itemId));
 
   return (
     <Wrapper>
